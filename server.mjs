@@ -1,10 +1,11 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve } from "node:path";
+import { deploy } from "./tools/deploy.config.mjs";
 
 const root = resolve(process.cwd());
 const port = Number(process.env.PORT) || 4322;
-const rawBase = (process.env.BASE_PATH || "").trim();
+const rawBase = (process.env.BASE_PATH ?? deploy.basePath ?? "").trim();
 const BASE_PATH =
   rawBase && rawBase !== "/" ? `/${rawBase.replace(/^\/+|\/+$/g, "")}` : "";
 

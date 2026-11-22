@@ -17,17 +17,20 @@ import {
 } from "./data.mjs";
 import { serviceContent, caseContent, postContent, aboutContent } from "./content.mjs";
 import { icons } from "./icons.mjs";
+import { deploy } from "./deploy.config.mjs";
 
 // ВНИМАНИЕ: кейсы, метрики, отзывы и цифры на страницах — демонстрационные.
 // Перед публикацией замените их на реальные данные (см. README.md).
 
-site.url = (process.env.SITE_URL || site.url).replace(/\/$/, "");
+site.url = (process.env.SITE_URL || deploy.siteUrl || site.url).replace(/\/$/, "");
 site.domain = new URL(site.url).host;
 
-const rawBase = (process.env.BASE_PATH || "").trim();
+const rawBase = (process.env.BASE_PATH ?? deploy.basePath ?? "").trim();
 const BASE_PATH =
   rawBase && rawBase !== "/" ? `/${rawBase.replace(/^\/+|\/+$/g, "")}` : "";
-const INDEXING = process.env.INDEXING === "1";
+const INDEXING = process.env.INDEXING
+  ? process.env.INDEXING === "1"
+  : Boolean(deploy.indexing);
 
 const OUT = process.cwd();
 const BUILD_DATE = new Date().toISOString().slice(0, 10);

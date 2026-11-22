@@ -1,9 +1,10 @@
 import { readFile, readdir, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { posts, site } from "./data.mjs";
+import { deploy } from "./deploy.config.mjs";
 
-const BASE = (process.env.SITE_URL || site.url).replace(/\/$/, "");
-const rawBase = (process.env.BASE_PATH || "").trim();
+const BASE = (process.env.SITE_URL || deploy.siteUrl || site.url).replace(/\/$/, "");
+const rawBase = (process.env.BASE_PATH ?? deploy.basePath ?? "").trim();
 const BASE_PATH =
   rawBase && rawBase !== "/" ? `/${rawBase.replace(/^\/+|\/+$/g, "")}` : "";
 const PREFIX = `${BASE}${BASE_PATH}`;

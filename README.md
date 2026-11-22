@@ -20,7 +20,7 @@
 ```bash
 npm run build   # собрать HTML, sitemap.xml, robots.txt, rss.xml
 npm run check   # проверить SEO-разметку и внутренние ссылки
-npm run dev     # собрать и запустить локальный сервер на http://localhost:4322
+npm run dev     # собрать и запустить локальный сервер на http://localhost:4322/osnova-web-studio/
 ```
 
 Сборка не обязательна для просмотра: готовые HTML-файлы уже лежат в репозитории.
@@ -52,6 +52,7 @@ js/config.js                  — настройки заявок и анали�
 js/main.js                    — меню, формы, аналитика
 assets/                       — логотип, favicon, OG-картинки
 tools/data.mjs                — контакты, услуги, кейсы, статьи, команда
+tools/deploy.config.mjs       — домен, базовый путь и режим индексации
 tools/content.mjs             — тексты страниц услуг, кейсов и статей
 tools/build.mjs               — генератор HTML и служебных файлов
 tools/check.mjs               — проверка SEO и ссылок
@@ -120,19 +121,23 @@ powershell -ExecutionPolicy Bypass -File tools/make-og.ps1
 
 ### Домен
 
-По умолчанию используется `https://osnova.studio`. Для сборки под другой домен:
+По умолчанию используются настройки из `tools/deploy.config.mjs`:
+`https://adastra-code.github.io` и базовый путь `/osnova-web-studio`.
+
+Для другого домена измените конфиг или переопределите переменные:
 
 ```bash
-SITE_URL=https://example.com npm run build
+SITE_URL=https://example.com BASE_PATH=/ npm run build
 ```
 
 На Windows PowerShell:
 
 ```powershell
-$env:SITE_URL="https://example.com"; npm run build
+$env:SITE_URL="https://example.com"; $env:BASE_PATH="/"; npm run build
 ```
 
-Домен подставляется в canonical, Open Graph, JSON-LD, sitemap и robots.txt.
+`BASE_PATH=/` означает «сайт в корне домена». Домен подставляется
+в canonical, Open Graph, JSON-LD, sitemap и robots.txt.
 
 ## Формы
 
@@ -160,7 +165,11 @@ $env:SITE_URL="https://example.com"; npm run build
 
 ### GitHub Pages
 
-Сборка для проекта в подпапке:
+Настройки публикации лежат в `tools/deploy.config.mjs`:
+`siteUrl`, `basePath` и `indexing`. Поэтому обычный `npm run build`
+собирает версию для GitHub Pages.
+
+Сборка для проекта в подпапке (если нужно переопределить):
 
 ```bash
 SITE_URL=https://adastra-code.github.io BASE_PATH=/osnova-web-studio npm run build
@@ -177,10 +186,10 @@ npm run check
 **Settings → Pages → Source: Deploy from a branch → main / (root)**.
 Файл `.nojekyll` уже добавлен, чтобы GitHub Pages отдавал все файлы как есть.
 
-Локальный предпросмотр этой же сборки:
+Локальный предпросмотр:
 
 ```powershell
-$env:BASE_PATH="/osnova-web-studio"; npm run dev
+npm run dev
 ```
 
 Откройте `http://localhost:4322/osnova-web-studio/`.
@@ -190,7 +199,7 @@ $env:BASE_PATH="/osnova-web-studio"; npm run dev
 Подойдёт любой статический хостинг: Netlify, Vercel, Cloudflare Pages,
 обычный сервер.
 
-1. Соберите сайт с нужным доменом.
+1. Соберите сайт с нужным доменом (или измените `tools/deploy.config.mjs`).
 2. Загрузите **содержимое папки** `web-studio/` (не весь репозиторий).
 3. Настройте 301-редиректы: `http → https`, `www → без www`.
 4. Включите gzip/brotli и кэш для `/assets`, `/css`, `/js`
@@ -215,8 +224,6 @@ $env:BASE_PATH="/osnova-web-studio"; npm run dev
 Чтобы открыть сайт для поиска:
 
 ```powershell
-$env:SITE_URL="https://adastra-code.github.io"
-$env:BASE_PATH="/osnova-web-studio"
 $env:INDEXING="1"
 npm run build
 npm run check
@@ -231,7 +238,7 @@ npm run check
 - [ ] Заменить телефон, email, реквизиты и соцсети на реальные.
 - [ ] Заменить демо-кейсы, метрики и отзывы.
 - [ ] Проверить цифры «60+ проектов», «14 человек», «92%».
-- [ ] Установить реальный домен через `SITE_URL` и пересобрать.
+- [ ] Установить реальный домен в `tools/deploy.config.mjs` и пересобрать.
 - [ ] Перегенерировать OG-картинки под новый бренд.
 - [ ] Указать `leadsEndpoint` и проверить доставку заявок.
 - [ ] Вписать `metrikaId`, проверить цели.
