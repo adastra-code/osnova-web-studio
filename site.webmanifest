@@ -1,0 +1,23 @@
+{
+  "name": "Веб-студия ОСНОВА",
+  "short_name": "ОСНОВА",
+  "description": "Разрабатываем сайты, интернет-магазины и digital-продукты, которые приносят заявки. Стратегия, дизайн, разработка, SEO и аналитика в одной команде.",
+  "start_url": "/osnova-web-studio/",
+  "scope": "/osnova-web-studio/",
+  "display": "standalone",
+  "background_color": "#f4f2eb",
+  "theme_color": "#0b0d0c",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/osnova-web-studio/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/osnova-web-studio/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

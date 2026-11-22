@@ -1,0 +1,6 @@
+.shots/
+.chrome-tmp/
+.chrome-cdp/
+node_modules/
+.DS_Store
+Thumbs.db

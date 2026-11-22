@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="ОСНОВА">
+  <rect width="512" height="512" rx="48" fill="#0b0d0c"/>
+  <g fill="none" stroke="#c9f74f" stroke-width="18">
+    <path d="M128 384V128h256v256"/>
+    <path d="M208 384V208h96v176"/>
+  </g>
+  <rect x="128" y="128" width="256" height="256" fill="none" stroke="#f4f2eb" stroke-width="8" stroke-opacity=".25"/>
+</svg>
