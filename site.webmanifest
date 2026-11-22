@@ -5,8 +5,8 @@
   "start_url": "/osnova-web-studio/",
   "scope": "/osnova-web-studio/",
   "display": "standalone",
-  "background_color": "#f4f2eb",
-  "theme_color": "#0b0d0c",
+  "background_color": "#FBF6EE",
+  "theme_color": "#3E332B",
   "lang": "ru",
   "icons": [
     {

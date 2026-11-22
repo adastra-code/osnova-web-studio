@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="ОСНОВА">
-  <rect width="512" height="512" rx="48" fill="#0b0d0c"/>
-  <g fill="none" stroke="#c9f74f" stroke-width="18">
-    <path d="M128 384V128h256v256"/>
-    <path d="M208 384V208h96v176"/>
-  </g>
-  <rect x="128" y="128" width="256" height="256" fill="none" stroke="#f4f2eb" stroke-width="8" stroke-opacity=".25"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="ОСНОВА — уютная веб-студия">
+  <rect width="512" height="512" rx="96" fill="#FBF6EE"/>
+  <circle cx="256" cy="272" r="168" fill="#D9A78B"/>
+  <path d="M152 280 136 168l80 48a120 120 0 0 1 80 0l80-48-16 112a112 112 0 1 1-208 0Z" fill="#3E332B"/>
+  <path d="M192 272c12 16 36 16 48 0M272 272c12 16 36 16 48 0M240 336l-16 20h32l-16-20Z" stroke="#FBF6EE" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M168 304 112 296M168 336l-56 16M344 304l56-8M344 336l56 16" stroke="#3E332B" stroke-width="10" stroke-linecap="round"/>
 </svg>

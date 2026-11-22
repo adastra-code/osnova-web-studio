@@ -37,6 +37,7 @@ const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const CONTENT_DATE = "2026-11-22";
 const ASSET_VERSION = createHash("sha1")
   .update(await readFile(join(OUT, "css/style.css")))
+  .update(await readFile(join(OUT, "css/cozy.css")))
   .update(await readFile(join(OUT, "js/main.js")))
   .digest("hex")
   .slice(0, 10);
@@ -223,16 +224,10 @@ function faqSchema(items) {
 
 /* ---------------------------------------------------------------- layout */
 
-const logoSvg = `
-  <svg class="logo-mark" viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" focusable="false">
-    <rect x="1" y="1" width="38" height="38" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <path d="M11 29V11h18v18" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M17 29V17h6v12" fill="none" stroke="currentColor" stroke-width="2"/>
-  </svg>`;
 
 function logo(href = "/", label = "ОСНОВА — на главную") {
   return `<a class="logo" href="${href}" aria-label="${esc(label)}">
-    ${logoSvg}
+    <span class="logo-mark">${icons.catFace}</span>
     <span class="logo-word">ОСНОВА<span class="logo-dot">.</span></span>
   </a>`;
 }
@@ -286,6 +281,7 @@ function footer() {
           <a href="${site.vk}" rel="noopener noreferrer" target="_blank">VK</a>
           <a href="${site.behance}" rel="noopener noreferrer" target="_blank">Behance</a>
         </div>
+        <div class="footer-paws" aria-hidden="true">${icons.paw}${icons.paw}${icons.paw}</div>
       </div>
       <nav class="footer-col" aria-label="Услуги">
         <p class="footer-col__title">Услуги</p>
@@ -356,7 +352,7 @@ function head(page) {
   <meta name="description" content="${esc(page.description)}">
   <link rel="canonical" href="${canonical}">
   <meta name="author" content="${esc(site.fullName)}">
-  <meta name="theme-color" content="#0b0d0c">
+  <meta name="theme-color" content="#FBF6EE">
 
   <meta property="og:type" content="${page.ogType || "website"}">
   <meta property="og:locale" content="ru_RU">
@@ -378,6 +374,7 @@ function head(page) {
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Блог ОСНОВА — RSS" href="/rss.xml">
   <link rel="stylesheet" href="/css/style.css?v=${ASSET_VERSION}">
+  <link rel="stylesheet" href="/css/cozy.css?v=${ASSET_VERSION}">
 
   <script type="application/ld+json">${jsonld(graph)}</script>`;
 }
@@ -502,6 +499,7 @@ function faqBlock(items, title = "Частые вопросы") {
 
 function ctaBand({ title = "Расскажите о задаче", text = "Ответим в течение рабочего дня, предложим 2–3 варианта решения и вилку бюджета. Без навязчивых звонков.", label = "Обсудить проект", href = "/kontakty/#form" } = {}) {
   return `<section class="cta-band">
+    <span class="cta-cat" aria-hidden="true">${icons.catFace}</span>
     <div class="container cta-band__inner">
       <div class="cta-band__copy">
         <p class="kicker kicker--light"><span class="kicker__num">→</span> Следующий шаг</p>
@@ -623,6 +621,7 @@ const homeBody = `
           <a class="btn btn--lime btn--lg" href="/kontakty/#form">Обсудить проект ${icons.arrow}</a>
           <a class="btn btn--ghost btn--lg" href="/keysy/">Смотреть кейсы</a>
         </div>
+        <div class="hand-note">с любовью к деталям <span>↘</span></div>
         <dl class="hero-stats">
           <div><dt>с ${site.founded}</dt><dd>года на рынке</dd></div>
           <div><dt>60+</dt><dd>проектов</dd></div>
@@ -632,6 +631,7 @@ const homeBody = `
       </div>
       <div class="hero-panel" aria-hidden="true">
         <div class="metric-card metric-card--main">
+          <div class="hero-cat" aria-hidden="true">${icons.catSleep}${icons.yarn}</div>
           <div class="metric-card__head"><span>Результат после запуска</span><span class="metric-card__dot"></span></div>
           <strong class="metric-card__value">+62%</strong>
           <span class="metric-card__label">заявок за 6 месяцев</span>
@@ -1427,6 +1427,7 @@ addPage({
 const notFoundBody = `
   <section class="not-found">
     <div class="container">
+      <div class="not-found-cat" aria-hidden="true">${icons.catSleep}</div>
       <p class="kicker">Ошибка 404</p>
       <h1>Такой страницы<br><em>нет</em></h1>
       <p class="not-found__lead">Возможно, ссылка устарела или в адресе опечатка. Вот куда можно перейти:</p>
@@ -1569,8 +1570,8 @@ async function writeManifest() {
         start_url: `${BASE_PATH || ""}/`,
         scope: `${BASE_PATH || ""}/`,
         display: "standalone",
-        background_color: "#f4f2eb",
-        theme_color: "#0b0d0c",
+        background_color: "#FBF6EE",
+        theme_color: "#3E332B",
         lang: "ru",
         icons: [
           { src: `${BASE_PATH}/assets/favicon.svg`, sizes: "any", type: "image/svg+xml" },
